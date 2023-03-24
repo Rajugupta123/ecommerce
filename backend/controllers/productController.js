@@ -1,9 +1,9 @@
 const Product = require("../models/productModel");
 const ErrorHandler = require("../utils/errorHandler");
-
+const catchAsyncErrors = require("../middleware/catchAsyncErrors")
 
 //create Product --Admin
-exports.createProduct = async(req,res,next)=>{
+exports.createProduct = catchAsyncErrors(async(req,res,next)=>{
 
     const product = await Product.create(req.body);
 
@@ -11,10 +11,10 @@ exports.createProduct = async(req,res,next)=>{
         success:true,
         product
     })
-}
+}) 
 
 //Get All Product
-exports.getAllProducts = async(req,res)=>{
+exports.getAllProducts = catchAsyncErrors(async(req,res)=>{
 
     const products = await Product.find();
 
@@ -23,10 +23,10 @@ exports.getAllProducts = async(req,res)=>{
         success:true,
         products
     })
-} 
+})
 
 //Get Single Product or Product Details.
-exports.getSingleProduct = async(req,res,next)=>{
+exports.getSingleProduct = catchAsyncErrors(async(req,res,next)=>{
 
     const product = await Product.findById(req.params.id);
 
@@ -38,11 +38,11 @@ exports.getSingleProduct = async(req,res,next)=>{
         product
     })
 
-}
+})
 
 
 //Update Product -- Admin
-exports.updateProduct = async(req,res,next)=>{
+exports.updateProduct = catchAsyncErrors(async(req,res,next)=>{
     
     let product = await Product.findById(req.params.id);
 
@@ -66,10 +66,10 @@ exports.updateProduct = async(req,res,next)=>{
         success:true,
         product
     })
-}
+})
 
 // Delete Product
-exports.deleteProduct = async(req,res,next)=>{
+exports.deleteProduct = catchAsyncErrors(async(req,res,next)=>{
 
     const product = await Product.findById(req.params.id);
     if(!product){
@@ -83,4 +83,4 @@ exports.deleteProduct = async(req,res,next)=>{
         message:"Product Deleted Successfully"
     })
 
-}
+})
