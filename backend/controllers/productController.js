@@ -1,6 +1,7 @@
 const Product = require("../models/productModel");
 const ErrorHandler = require("../utils/errorHandler");
-const catchAsyncErrors = require("../middleware/catchAsyncErrors")
+const catchAsyncErrors = require("../middleware/catchAsyncErrors");
+const ApiFeatures = require("../utils/apifeatures");
 
 //create Product --Admin
 exports.createProduct = catchAsyncErrors(async(req,res,next)=>{
@@ -16,7 +17,10 @@ exports.createProduct = catchAsyncErrors(async(req,res,next)=>{
 //Get All Product
 exports.getAllProducts = catchAsyncErrors(async(req,res)=>{
 
-    const products = await Product.find();
+    const apiFeature = new ApiFeatures(Product.find(),req.query)
+    .search()
+    .filter();
+    const products = await apiFeature.query;
 
     res.status(200).json({
         //message:"Route is working Fine"
