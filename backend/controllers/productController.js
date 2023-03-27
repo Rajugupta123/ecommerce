@@ -45,7 +45,7 @@ exports.getSingleProduct = catchAsyncErrors(async(req,res,next)=>{
     res.status(200).json({
         success:true,
         product,
-        // this is where productCnt to be used by 6pp
+        // this is where productCnt to be used by later on
     })
 
 })
