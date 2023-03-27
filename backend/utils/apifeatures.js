@@ -38,6 +38,16 @@ class ApiFeatures {
         return this;
     }
 
+    pagination(resultPerPage){
+        const currentPage = Number(this.queryStr.page) || 1;
+        const skip = Number(resultPerPage) * Number(currentPage - 1);             // 25 - 5
+
+        this.query = this.query.limit(Number(resultPerPage)).skip(Number(skip)); 
+        return this;
+
+
+    }    
+
 
 }
 

@@ -17,19 +17,24 @@ exports.createProduct = catchAsyncErrors(async(req,res,next)=>{
 //Get All Product
 exports.getAllProducts = catchAsyncErrors(async(req,res)=>{
 
+    const resultPerPage = 5;
+    //later at frontend
+    const productCount = await Product.countDocuments();
+
     const apiFeature = new ApiFeatures(Product.find(),req.query)
     .search()
-    .filter();
+    .filter().pagination(resultPerPage);
     const products = await apiFeature.query;
 
     res.status(200).json({
         //message:"Route is working Fine"
         success:true,
-        products
+        products,
+        productCount
     })
 })
 
-//Get Single Product or Product Details.
+//Get Product Details or Single Product.
 exports.getSingleProduct = catchAsyncErrors(async(req,res,next)=>{
 
     const product = await Product.findById(req.params.id);
@@ -39,7 +44,8 @@ exports.getSingleProduct = catchAsyncErrors(async(req,res,next)=>{
     }
     res.status(200).json({
         success:true,
-        product
+        product,
+        // this is where productCnt to be used by 6pp
     })
 
 })
