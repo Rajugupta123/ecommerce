@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const validator = require("validator");
 const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken")
 
 const userSchema = new mongoose.Schema({
     name:{
@@ -18,7 +19,8 @@ const userSchema = new mongoose.Schema({
     password:{
         type:String,
         required:[true,"Please Enter Your Password"],
-        minLength:[8,"Password Should have more than 8 characters"]
+        minLength:[8,"Password Should have more than 8 characters"],
+        select:false
         
     },
     avatar:{
@@ -40,6 +42,7 @@ const userSchema = new mongoose.Schema({
     resetPasswordExpire : Date,
 })
 
+//encrypting the password before saving it to database.
 userSchema.pre("save",async function(next){
 
     if(!this.isModified("password")){
@@ -48,5 +51,18 @@ userSchema.pre("save",async function(next){
 
     this.password = await bcrypt.hash(this.password,10)
 })
+
+//JWT json web token,generating token and storing in cookie.
+userSchema.methods.getJWTToken = function(){
+    return jwt.sign({id:this._id},process.env.JWT_SECRET,{
+        expiresIn: process.env.JWT_EXPIRE
+    })
+}
+
+//Compare Password
+userSchema.methods.comparePassword = async function (enteredPassword){
+    return await bcrypt.compare(enteredPassword,this.password)
+}
+
 
 module.exports = mongoose.model("User",userSchema);
