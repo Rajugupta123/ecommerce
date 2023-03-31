@@ -1,0 +1,67 @@
+.banner{
+    background-image:linear-gradient(to right,#0b695d,#5fbeb2);
+    /* background-image:linear-gradient(to right,#a020f0,#ad94bc); */
+    height: 120vmin;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+.banner >h1{
+    margin: 5vmax;
+    font: 600 2.5vmax "Roboto";
+}
+.banner>p{
+    font: 300 1.5vmax "Lucida Sans";
+}
+.banner>a>button{
+    margin-bottom: 5vmax;
+    cursor: pointer;
+    background-color: #fff;
+    border: 1px solid #fff;
+    border-radius: 5px;
+    padding: 1vmax;
+    width: 9vmax;
+    transition: all 0.3s;
+    font:900 1.5vmax "Roboto";
+}
+.banner>a>button:hover{
+    background-image:linear-gradient(to right,#0b695d,#5fbeb2);
+    color: #fff;   
+}
+/* .banner:after{
+    content: "";
+    width:100vw;
+    height:100vmin;
+    background-color: #fff;
+    position: absolute;
+    top: 0%;
+    left: 0;
+    clip-path: polygon(100% 70%, 0% 100%, 100% 100%);
+    
+
+} */
+
+.homeHeading{
+    text-align: center;
+    font-family: "Roboto";
+    font-size: 1.5vmax;
+    border-bottom: 2px solid #0b695d;
+    width: 20vmax;
+    padding: 1vmax;
+    margin: 5vmax auto;
+    color: rgba(0,0,0,0.9);
+}
+
+
+/* styling for product */
+.productCard{
+    width: 14vmax;
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: rgb(48,48,48);
+    margin: 2vmax;
+}
