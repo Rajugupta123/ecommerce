@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react'
 import {FaLongArrowAltDown} from "react-icons/fa"
 import Product from "./Product"
+import MetaData from '../layout/MetaData'
 import "./Home.css"
 
 
@@ -15,6 +16,8 @@ const product = {
 const Home = () => {
   return (
     <Fragment>
+        <MetaData title="Home Page is working"/>
+
         <div className='banner'>
             <p>Welcome to Ecommerce</p>
             <h1>Find Amazing Products Below</h1>
