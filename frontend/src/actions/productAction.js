@@ -29,4 +29,4 @@ export const getProduct =()=>async(dispatch)=>{
 //clearing Errors
 export const clearErrors =()=>async(dispatch)=>{
     dispatch({type:CLEAR_ERRORS})
-}
+} 

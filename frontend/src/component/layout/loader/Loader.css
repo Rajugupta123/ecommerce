@@ -1,0 +1,30 @@
+.loading{
+    width: 100vw;
+    height: 100vh;
+    background-color: white;
+    display: grid;
+    place-items:center;
+    max-width: 100%;
+}
+
+.loading >div{
+    height: 7vmax;
+    width: 7vmax;
+    
+    /* border-left:2px solid purple;*/
+    /* background-image:linear-gradient(to right,#0b695d,#5fbeb2); */
+    /* border-top: 3px solid #0b695d;
+    border-bottom: 3px solid #0b693e;
+     */
+     border-bottom: 3px solid rgba(0,0,0,0.719);
+    border-radius: 50%;
+
+    animation:loadingRotate 800ms linear infinite 
+}
+
+@keyframes loadingRotate {
+    to{
+        transform: rotateZ(360deg);
+    }
+    
+}

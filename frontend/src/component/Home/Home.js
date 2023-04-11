@@ -1,21 +1,33 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useEffect } from 'react'
 import {FaLongArrowAltDown} from "react-icons/fa"
 import Product from "./Product"
 import MetaData from '../layout/MetaData'
 import "./Home.css"
+import {getProduct} from "../../actions/productAction"
+import {useSelector,useDispatch} from "react-redux"
+import Loader from '../layout/loader/Loader'
 
-
-const product = {
-    name:"T -shirt",
-    images:[{url:"https://rukminim1.flixcart.com/image/612/612/xif0q/t-shirt/y/t/k/xxs-t653-cgblwh-eyebogler-original-imaghyjv7kppbqxb.jpeg?q=70"}],
-    price: " Rs 2500",
-    _id:" shyam"
-}
+//for static product demo
+// const product = {
+//     name:"T -shirt",
+//     images:[{url:"https://rukminim1.flixcart.com/image/612/612/xif0q/t-shirt/y/t/k/xxs-t653-cgblwh-eyebogler-original-imaghyjv7kppbqxb.jpeg?q=70"}],
+//     price: " Rs 2500",
+//     _id:" shyam"
+// }
 
 
 const Home = () => {
+    const dispatch = useDispatch()
+    const{loading,error,products,productsCount} = useSelector((state)=>state.products)
+    
+    useEffect(() => {
+        dispatch(getProduct())
+    }, [dispatch]) 
+    
   return (
     <Fragment>
+        {loading ? (<Loader/>):(
+        <Fragment>
         <MetaData title="Home Page is working"/>
 
         <div className='banner'>
@@ -32,18 +44,13 @@ const Home = () => {
         </div>
         <h2 className='homeHeading'>Featured Products</h2>
         <div className='container' id='container'>
-            <Product product={product} />
-            <Product product={product} />
-            <Product product={product} />
-            <Product product={product} />
-
-            <Product product={product} />
-            <Product product={product} />
-            <Product product={product} />
-            <Product product={product} />
             
+            {products && products.map(product=>(
+                <Product product={product} />
+            ))}
         </div>
 
+    </Fragment>)}
     </Fragment>
   )
 }

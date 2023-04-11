@@ -1,3 +1,4 @@
+import React from "react"
 import Header from "./component/layout/Header/Header"
 import Footer from "./component/layout/Footer/Footer"
 import {BrowserRouter as Router,Routes,Route} from "react-router-dom"
@@ -11,7 +12,10 @@ function App() {
       <Header/>
       {/* <h2 style={{textAlign:'center'}}>Welcome to Online Shopping</h2> */}
       <Router>
-        <Routes><Route path="/" element={<Home/>} /></Routes>
+        <Routes>
+          <Route path="/" element={<Home/>} />
+        
+        </Routes>
           
       </Router>
       
